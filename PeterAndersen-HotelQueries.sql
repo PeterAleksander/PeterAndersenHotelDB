@@ -9,7 +9,17 @@ LIKE '%2023-07-%'
 
 --2. Write a query that returns a list of all reservations for rooms with a jacuzzi, displaying the guest's name, the room number, and the dates of the reservation.
 
-WIP
+SELECT Guest.FirstName,LastName,Reservation.RoomNumber,StartDate,EndDate 
+FROM Reservation 
+JOIN Room 
+ON Room.RoomNumber = Reservation.RoomNumber
+JOIN Guest 
+ON Guest.GuestId = Reservation.GuestId
+JOIN AmenitySupport 
+ON AmenitySupport.RoomNumber = Room.RoomNumber
+JOIN Amenity 
+ON AmenitySupport.AmenityId = Amenity.AmenityId
+Where Amenity.AmenityId = 4
 
 --03 Write a query that returns all the rooms reserved for a specific guest, including the guest's name, the room(s) reserved, 
 --the starting date of the reservation, and how many people were included in the reservation. (Choose a guest's name from the existing data.)
